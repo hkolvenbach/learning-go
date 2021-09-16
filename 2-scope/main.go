@@ -16,6 +16,8 @@ func main() {
 	newString := packageone.PublicVar
 
 	fmt.Println(newString)
+
+	packageone.Exported()
 }
 
 func myFunc() {
