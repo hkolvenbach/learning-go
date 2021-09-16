@@ -29,7 +29,7 @@ func main() {
 	fmt.Println("MENU")
 	fmt.Println("----")
 	for i := 1; i <= len(coffees); i++ {
-		fmt.Println(fmt.Sprintf("%d - %s", i, coffees[i]))
+		fmt.Printf("%d - %s\n", i, coffees[i])
 	}
 
 	for {
@@ -44,7 +44,7 @@ func main() {
 
 		i, _ := strconv.Atoi(string(char))
 
-		fmt.Println(fmt.Sprintf("You chose %s", coffees[i]))
+		fmt.Printf("You chose %s\n", coffees[i])
 	}
 
 	fmt.Println("Program exiting.")
