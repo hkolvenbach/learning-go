@@ -12,7 +12,9 @@ func main() {
 	whatToSay := doctor.Intro()
 	fmt.Println(whatToSay)
 
-	userInput, _ := reader.ReadString('\n')
+	for {
+		userInput, _ := reader.ReadString('\n')
 
-	fmt.Println(userInput)
+		fmt.Println(userInput)
+	}
 }
