@@ -12,4 +12,11 @@ func main() {
 
 	*myFirstPointer = 15
 	fmt.Println(myInt)
+
+	change(myFirstPointer)
+	fmt.Println("myInt is now", myInt)
+}
+
+func change(num *int) {
+	*num = 25
 }
