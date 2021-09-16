@@ -9,4 +9,7 @@ func main() {
 
 	fmt.Println(myInt)
 	fmt.Println("myFirstPointer is", myFirstPointer)
+
+	*myFirstPointer = 15
+	fmt.Println(myInt)
 }
