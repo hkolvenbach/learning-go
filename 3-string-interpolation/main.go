@@ -104,7 +104,7 @@ func readBool(s string) bool {
 	}
 
 	defer func() {
-		keyboard.Close()
+		_ = keyboard.Close()
 	}()
 
 	for {
