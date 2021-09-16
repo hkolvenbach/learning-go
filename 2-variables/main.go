@@ -20,7 +20,7 @@ func main() {
 	game(firstNumber, secondNumber, substraction, answer)
 }
 
-func game(firstNumber int, secondNumber int, substraction int, answer int) {
+func game(firstNumber, secondNumber, substraction, answer int) {
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Println("Guess theNumbers Game")
