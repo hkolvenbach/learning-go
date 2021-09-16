@@ -28,13 +28,9 @@ func main() {
 
 	fmt.Println("MENU")
 	fmt.Println("----")
-	fmt.Println("1 - Cappuchino")
-	fmt.Println("2 - Latte")
-	fmt.Println("3 - Americano")
-	fmt.Println("4 - Mocha")
-	fmt.Println("5 - Macchiato")
-	fmt.Println("6 - Espresso")
-	fmt.Println("q - Quit the program")
+	for i := 1; i <= len(coffees); i++ {
+		fmt.Println(fmt.Sprintf("%d - %s", i, coffees[i]))
+	}
 
 	for {
 		char, _, err := keyboard.GetSingleKey()
