@@ -116,6 +116,8 @@ func readBool(s string) bool {
 			log.Fatal(err)
 		}
 
+		// alternative:
+		// strings.toLower(string(char)) != 'y' && strings.toLower(string(char)) != 'n'
 		if char == 'y' || char == 'Y' {
 			return true
 		} else if char == 'n' || char == 'N' {
