@@ -68,8 +68,8 @@ func (g *Game) PrintIntro() {
 func (g *Game) PlayRound() bool {
 	rand.Seed(time.Now().UnixNano())
 	playerValue := -1
-	fmt.Println()
-	fmt.Println("Round", g.Round.RoundNumber)
+	g.DisplayChan <- ""
+	g.DisplayChan <- fmt.Sprintf("Round %d", g.Round.RoundNumber)
 
 	fmt.Print("Please enter rock, paper, or scissors ->")
 	playerChoice, _ := reader.ReadString('\n')
@@ -87,24 +87,24 @@ func (g *Game) PlayRound() bool {
 	}
 
 	fmt.Println()
-	fmt.Println("Player chose", playerChoice)
+	g.DisplayChan <- fmt.Sprintf("Player chose %s", playerChoice)
 	g.DisplayChan <- fmt.Sprintf("Player chose %s", strings.ToUpper(playerChoice))
 
 	switch computerValue {
 	case ROCK:
-		g.DisplayChan <- fmt.Sprintf("Computer chose ROCK")
+		g.DisplayChan <- "Computer chose ROCK"
 		break
 	case PAPER:
-		g.DisplayChan <- fmt.Sprintf("Computer chose PAPER")
+		g.DisplayChan <- "Computer chose PAPER"
 		break
 	case SCISSORS:
-		g.DisplayChan <- fmt.Sprintf("Computer chose SCISSORS")
+		g.DisplayChan <- "Computer chose SCISSORS"
 		break
 	default:
 	}
 
 	if playerValue == computerValue {
-		g.DisplayChan <- fmt.Sprintf("Its a draw.")
+		g.DisplayChan <- "Its a draw."
 		return false
 	} else {
 		switch playerValue {
@@ -149,14 +149,14 @@ func (g *Game) playerWins() {
 }
 
 func (g *Game) PrintSummary() {
-	fmt.Println()
-	fmt.Println("Computer Score:", g.Round.ComputerScore)
-	fmt.Println("Player Score:", g.Round.PlayerScore)
+	g.DisplayChan <- ""
+	g.DisplayChan <- fmt.Sprintf("Computer Score: %d", g.Round.ComputerScore)
+	g.DisplayChan <- fmt.Sprintf("Player Score: %d", g.Round.PlayerScore)
 	if g.Round.ComputerScore == g.Round.PlayerScore {
-		fmt.Println("It's a draw!")
+		g.DisplayChan <- "It's a draw!"
 	} else if g.Round.ComputerScore > g.Round.PlayerScore {
-		fmt.Println("Computer wins!")
+		g.DisplayChan <- "Computer wins!"
 	} else {
-		fmt.Println("Player wins!")
+		g.DisplayChan <- "Player wins!"
 	}
 }
