@@ -28,6 +28,7 @@ func main() {
 	}
 }
 
+// this is a blocking go routine (blocks until receiving something from channel)
 func listenForKeyPress() {
 	for {
 		key := <-keyPressChannel
