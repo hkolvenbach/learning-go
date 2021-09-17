@@ -1,37 +1,51 @@
 package main
 
-import (
-	"fmt"
+import "fmt"
 
-	"github.com/eiannone/keyboard"
-)
-
-var keyPressChannel chan rune
-
-func main() {
-	keyPressChannel = make(chan rune)
-	go listenForKeyPress()
-
-	fmt.Println("Press any key, q to quit")
-	_ = keyboard.Open()
-	defer func() {
-		keyboard.Close()
-	}()
-
-	for {
-		char, _, _ := keyboard.GetSingleKey()
-		if char == 'q' || char == 'Q' {
-			break
-		}
-
-		keyPressChannel <- char
-	}
+type Animal interface {
+	Says() string
+	HowManyLegs() int
 }
 
-// this is a blocking go routine (blocks until receiving something from channel)
-func listenForKeyPress() {
-	for {
-		key := <-keyPressChannel
-		fmt.Println("You pressed", string(key))
-	}
+type Dog struct {
+	Name         string
+	Sound        string
+	NumberOfLegs int
+}
+
+func (d *Dog) Says() string {
+	return d.Sound
+}
+
+func (d *Dog) HowManyLegs() int {
+	return d.NumberOfLegs
+}
+
+type Cat struct {
+	Name         string
+	Sound        string
+	NumberOfLegs int
+	HasTail      bool
+}
+
+func (d *Cat) Says() string {
+	return d.Sound
+}
+
+func (d *Cat) HowManyLegs() int {
+	return d.NumberOfLegs
+}
+
+func main() {
+	dog := Dog{Name: "Dog", Sound: "Woof", NumberOfLegs: 4}
+	Riddle(&dog)
+
+	cat := Cat{Name: "Cat", Sound: "Meow", NumberOfLegs: 4, HasTail: true}
+
+	Riddle(&cat)
+}
+
+func Riddle(a Animal) {
+	riddle := fmt.Sprintf("This animal says \"%s\" and has %d legs. What animal is it?", a.Says(), a.HowManyLegs())
+	fmt.Println(riddle)
 }
