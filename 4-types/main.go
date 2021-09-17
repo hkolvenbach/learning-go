@@ -1,17 +1,36 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-type Animal struct {
-	Name  string
-	Sound string
-}
+	"github.com/eiannone/keyboard"
+)
+
+var keyPressChannel chan rune
 
 func main() {
-	myAnimal := Animal{Name: "dog", Sound: "woof"}
-	myAnimal.Says()
+	keyPressChannel = make(chan rune)
+	go listenForKeyPress()
+
+	fmt.Println("Press any key, q to quit")
+	_ = keyboard.Open()
+	defer func() {
+		keyboard.Close()
+	}()
+
+	for {
+		char, _, _ := keyboard.GetSingleKey()
+		if char == 'q' || char == 'Q' {
+			break
+		}
+
+		keyPressChannel <- char
+	}
 }
 
-func (a *Animal) Says() {
-	fmt.Println("Animal", a.Name, "says", a.Sound)
+func listenForKeyPress() {
+	for {
+		key := <-keyPressChannel
+		fmt.Println("You pressed", string(key))
+	}
 }
