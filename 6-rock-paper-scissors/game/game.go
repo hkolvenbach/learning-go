@@ -42,6 +42,8 @@ func (g *Game) Rounds() {
 			g.RoundChan <- 1
 		case msg := <-g.DisplayChan:
 			fmt.Println(msg)
+			// Notify that it is finished
+			g.DisplayChan <- ""
 		}
 	}
 }
@@ -62,14 +64,21 @@ func (g *Game) ClearScreen() {
 }
 
 func (g *Game) PrintIntro() {
-	fmt.Println("Please enter rock, paper, or scissors")
+	g.DisplayChan <- "Please enter rock, paper, or scissors"
+	// wait for it to finish printing
+	<-g.DisplayChan
 }
 
 func (g *Game) PlayRound() bool {
 	rand.Seed(time.Now().UnixNano())
 	playerValue := -1
 	g.DisplayChan <- ""
+	// wait for it to finish printing
+	<-g.DisplayChan
 	g.DisplayChan <- fmt.Sprintf("Round %d", g.Round.RoundNumber)
+
+	// wait for it to finish printing
+	<-g.DisplayChan
 
 	fmt.Print("Please enter rock, paper, or scissors ->")
 	playerChoice, _ := reader.ReadString('\n')
@@ -88,23 +97,35 @@ func (g *Game) PlayRound() bool {
 
 	fmt.Println()
 	g.DisplayChan <- fmt.Sprintf("Player chose %s", playerChoice)
+	// wait for it to finish printing
+	<-g.DisplayChan
 	g.DisplayChan <- fmt.Sprintf("Player chose %s", strings.ToUpper(playerChoice))
+	// wait for it to finish printing
+	<-g.DisplayChan
 
 	switch computerValue {
 	case ROCK:
 		g.DisplayChan <- "Computer chose ROCK"
+		// wait for it to finish printing
+		<-g.DisplayChan
 		break
 	case PAPER:
 		g.DisplayChan <- "Computer chose PAPER"
+		// wait for it to finish printing
+		<-g.DisplayChan
 		break
 	case SCISSORS:
 		g.DisplayChan <- "Computer chose SCISSORS"
+		// wait for it to finish printing
+		<-g.DisplayChan
 		break
 	default:
 	}
 
 	if playerValue == computerValue {
 		g.DisplayChan <- "Its a draw."
+		// wait for it to finish printing
+		<-g.DisplayChan
 		return false
 	} else {
 		switch playerValue {
@@ -131,6 +152,8 @@ func (g *Game) PlayRound() bool {
 			break
 		default:
 			g.DisplayChan <- "Invalid choice"
+			// wait for it to finish printing
+			<-g.DisplayChan
 			// reset round counter by one
 			return false
 		}
@@ -141,22 +164,38 @@ func (g *Game) PlayRound() bool {
 func (g *Game) computerWins() {
 	g.Round.ComputerScore++
 	g.DisplayChan <- "Computer wins!"
+	// wait for it to finish printing
+	<-g.DisplayChan
 }
 
 func (g *Game) playerWins() {
 	g.Round.PlayerScore++
 	g.DisplayChan <- "Player wins!"
+	// wait for it to finish printing
+	<-g.DisplayChan
 }
 
 func (g *Game) PrintSummary() {
 	g.DisplayChan <- ""
+	// wait for it to finish printing
+	<-g.DisplayChan
 	g.DisplayChan <- fmt.Sprintf("Computer Score: %d", g.Round.ComputerScore)
+	// wait for it to finish printing
+	<-g.DisplayChan
 	g.DisplayChan <- fmt.Sprintf("Player Score: %d", g.Round.PlayerScore)
+	// wait for it to finish printing
+	<-g.DisplayChan
 	if g.Round.ComputerScore == g.Round.PlayerScore {
 		g.DisplayChan <- "It's a draw!"
+		// wait for it to finish printing
+		<-g.DisplayChan
 	} else if g.Round.ComputerScore > g.Round.PlayerScore {
 		g.DisplayChan <- "Computer wins!"
+		// wait for it to finish printing
+		<-g.DisplayChan
 	} else {
 		g.DisplayChan <- "Player wins!"
+		// wait for it to finish printing
+		<-g.DisplayChan
 	}
 }
