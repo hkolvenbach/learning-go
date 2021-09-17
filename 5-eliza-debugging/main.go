@@ -26,12 +26,13 @@ func main() {
 		userInput, _ := reader.ReadString('\n')
 
 		// Strip the carriage return off of whatever they typed
+		userInput = strings.Replace(userInput, "\r\n", "", -1)
 		userInput = strings.Replace(userInput, "\n", "", -1)
 
-		fmt.Println(Response(userInput))
-
-		if userInput == "quit" {
-			break			
+		if userInput != "quit" {
+			fmt.Println(Response(userInput))
+		} else {
+			break
 		}
 	}
 }
