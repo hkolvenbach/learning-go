@@ -32,15 +32,17 @@ func main() {
 		fmt.Printf("%d - %s\n", i, coffees[i])
 	}
 
-	for {
-		char, _, err := keyboard.GetSingleKey()
+	char := ' '
+
+	for char != 'q' {
+		char, _, err = keyboard.GetSingleKey()
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		if char == 'q' || char == 'Q' {
-			break
-		}
+		// if char == 'q' || char == 'Q' {
+		// 	break
+		// }
 
 		i, _ := strconv.Atoi(string(char))
 
