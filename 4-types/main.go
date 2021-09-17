@@ -3,20 +3,23 @@ package main
 import "fmt"
 
 func main() {
-	var myInt int = 10
+	var animals []string
+	animals = append(animals, "dog")
+	animals = append(animals, "cat")
 
-	myFirstPointer := &myInt
+	fmt.Println(animals)
 
-	fmt.Println(myInt)
-	fmt.Println("myFirstPointer is", myFirstPointer)
-
-	*myFirstPointer = 15
-	fmt.Println(myInt)
-
-	change(myFirstPointer)
-	fmt.Println("myInt is now", myInt)
+	for _, x := range animals {
+		fmt.Println(x)
+	}
 }
 
-func change(num *int) {
-	*num = 25
+func DeleteFromSlice(a []string, i int) {
+	// copy last element to ith element (which will be deleted)
+	// this will not keep the order
+	a[i] = a[len(a)-1]
+	// set last element to nothing
+	a[len(a)-1] = ""
+	// use 0 to len(a)-1 elements and assign to a
+	a = a[:len(a)-1]
 }
