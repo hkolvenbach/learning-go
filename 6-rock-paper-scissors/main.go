@@ -37,13 +37,54 @@ func main() {
 		playerValue = ROCK
 	} else if playerChoice == "paper" {
 		playerValue = PAPER
-	} else {
+	} else if playerChoice == "scissors" {
 		playerValue = SCISSORS
 	}
 
-	fmt.Println()
-	fmt.Println("Player chose", playerChoice, "and value is", playerValue)
-	fmt.Println("Computer chose", computerValue)
+	switch computerValue {
+	case ROCK:
+		fmt.Println("Computer chose ROCK")
+		break
+	case PAPER:
+		fmt.Println("Computer chose PAPER")
+		break
+	case SCISSORS:
+		fmt.Println("Computer chose SCISSORS")
+		break
+	default:
+	}
+	fmt.Println("Player value is", playerValue)
+
+	if playerValue == computerValue {
+		fmt.Println("Its a draw.")
+	} else {
+		switch playerValue {
+		case ROCK:
+			if computerValue == PAPER {
+				fmt.Println("Computer wins")
+			} else {
+				fmt.Println("Player wins")
+			}
+			break
+		case PAPER:
+			if computerValue == SCISSORS {
+				fmt.Println("Computer wins")
+			} else {
+				fmt.Println("Player wins")
+			}
+			break
+		case SCISSORS:
+			if computerValue == ROCK {
+				fmt.Println("Computer wins")
+			} else {
+				fmt.Println("Player wins")
+			}
+			break
+		default:
+			fmt.Println("Invalid choice")
+		}
+	}
+
 }
 
 // clearScreen clears the screen
