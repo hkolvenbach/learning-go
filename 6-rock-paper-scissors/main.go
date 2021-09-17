@@ -35,12 +35,12 @@ func main() {
 
 	if playerChoice == "rock" {
 		playerValue = ROCK
-	}
-	if playerChoice == "paper" {
+	} else if playerChoice == "paper" {
 		playerValue = PAPER
-	}
-	if playerChoice == "scissors" {
+	} else if playerChoice == "scissors" {
 		playerValue = SCISSORS
+	} else if playerChoice == "rock" {
+		fmt.Println("rock again")
 	}
 
 	fmt.Println()
