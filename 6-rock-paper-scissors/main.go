@@ -30,7 +30,22 @@ func main() {
 
 	fmt.Print("Please enter rock, paper, or scissors ->")
 	playerChoice, _ = reader.ReadString('\n')
+	playerChoice = strings.Replace(playerChoice, "\r\n", "", -1)
+	playerChoice = strings.Replace(playerChoice, "\n", "", -1)
 
+	if playerChoice == "rock" {
+		playerValue = ROCK
+	}
+	if playerChoice == "paper" {
+		playerValue = PAPER
+	}
+	if playerChoice == "scissors" {
+		playerValue = SCISSORS
+	}
+
+	fmt.Println()
+	fmt.Println("Player chose", playerChoice, "and value is", playerValue)
+	fmt.Println("Computer chose", computerValue)
 }
 
 // clearScreen clears the screen
