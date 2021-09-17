@@ -40,15 +40,9 @@ func main() {
 			log.Fatal(err)
 		}
 
-		// if char == 'q' || char == 'Q' {
-		// 	break
-		// }
-
 		i, _ := strconv.Atoi(string(char))
 
-		el, ok := coffees[i]
-
-		if ok {
+		if el, ok := coffees[i]; ok {
 			fmt.Printf("You chose %s\n", el)
 		} else {
 			fmt.Println("We dont have that.")
