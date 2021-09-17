@@ -22,13 +22,16 @@ func main() {
 	playerChoice := ""
 	playerValue := -1
 
-	computerValue := rand.Intn(2)
+	playerScore := 0
+	computerScore := 0
 
 	reader := bufio.NewReader(os.Stdin)
 
 	clearScreen()
 
 	for i := 1; i <= 3; i++ {
+		computerValue := rand.Intn(2)
+
 		fmt.Printf("Round %d:\n", i)
 		fmt.Print("Please enter rock, paper, or scissors ->")
 		playerChoice, _ = reader.ReadString('\n')
@@ -67,22 +70,28 @@ func main() {
 			case ROCK:
 				if computerValue == PAPER {
 					fmt.Println("Computer wins")
+					computerScore++
 				} else {
 					fmt.Println("Player wins")
+					playerScore++
 				}
 				break
 			case PAPER:
 				if computerValue == SCISSORS {
 					fmt.Println("Computer wins")
+					computerScore++
 				} else {
 					fmt.Println("Player wins")
+					playerScore++
 				}
 				break
 			case SCISSORS:
 				if computerValue == ROCK {
 					fmt.Println("Computer wins")
+					computerScore++
 				} else {
 					fmt.Println("Player wins")
+					playerScore++
 				}
 				break
 			default:
@@ -91,6 +100,16 @@ func main() {
 				i--
 			}
 		}
+	}
+
+	fmt.Println("Computer Score:", computerScore)
+	fmt.Println("Player Score:", playerScore)
+	if computerScore == playerScore {
+		fmt.Println("It's a draw!")
+	} else if computerScore > playerScore {
+		fmt.Println("Computer wins!")
+	} else {
+		fmt.Println("Player wins!")
 	}
 
 }
