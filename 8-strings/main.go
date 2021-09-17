@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	fmt.Println()
@@ -22,4 +25,20 @@ func main() {
 		//fmt.Printf("%d\t%X\t%s", i, name[i], name[i])
 	}
 
+	h := "Hello "
+	w := "World"
+	myString := h + w
+	fmt.Println(myString)
+	myString = fmt.Sprintf("%s%s", h, w)
+	fmt.Println(myString)
+
+	var sb strings.Builder
+	sb.WriteString(h)
+	sb.WriteString(w)
+	fmt.Println(sb.String())
+
+	fmt.Println()
+	name = "abcdefghijkl"
+	fmt.Println("Getting Substring")
+	fmt.Println(name[0:10])
 }
