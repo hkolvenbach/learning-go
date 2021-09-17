@@ -34,11 +34,8 @@ func main() {
 
 	char := ' '
 
-	for char != 'q' {
+	for char != 'q' && char != 'Q' {
 		char, _, err = keyboard.GetSingleKey()
-		if char == 'Q' {
-			char = 'q'
-		}
 		if err != nil {
 			log.Fatal(err)
 		}
