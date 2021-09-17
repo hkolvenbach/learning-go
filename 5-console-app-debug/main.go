@@ -44,10 +44,14 @@ func main() {
 		// 	break
 		// }
 
-		if char != 'q' {
-			i, _ := strconv.Atoi(string(char))
+		i, _ := strconv.Atoi(string(char))
 
-			fmt.Printf("You chose %s\n", coffees[i])
+		el, ok := coffees[i]
+
+		if ok {
+			fmt.Printf("You chose %s\n", el)
+		} else {
+			fmt.Println("We dont have that.")
 		}
 
 	}
