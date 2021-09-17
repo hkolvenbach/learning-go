@@ -3,13 +3,17 @@ package main
 import "fmt"
 
 func main() {
-	second := 31
-	minute := 1
+	a := 12
+	b := 6
 
-	// + has precedence over <>, and then over &&
-	// e.g. (minute < 59) && ((second +1) > 59)
-	if minute < 59 && second+1 > 59 {
-		minute++
+	c := divideTwoNumbers(a, b)
+
+	if c == 2 {
+		fmt.Println("Found two")
 	}
-	fmt.Println(minute)
+	//fmt.Println()
+}
+
+func divideTwoNumbers(x, y int) int {
+	return x / y
 }
