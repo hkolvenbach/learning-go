@@ -33,14 +33,5 @@ func main() {
 		}
 	}
 
-	// fmt.Println("Computer Score:", computerScore)
-	// fmt.Println("Player Score:", playerScore)
-	// if computerScore == playerScore {
-	// 	fmt.Println("It's a draw!")
-	// } else if computerScore > playerScore {
-	// 	fmt.Println("Computer wins!")
-	// } else {
-	// 	fmt.Println("Player wins!")
-	// }
-
+	game.PrintSummary()
 }

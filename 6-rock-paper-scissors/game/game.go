@@ -105,6 +105,7 @@ func (g *Game) PlayRound() bool {
 
 	if playerValue == computerValue {
 		g.DisplayChan <- fmt.Sprintf("Its a draw.")
+		return false
 	} else {
 		switch playerValue {
 		case ROCK:
@@ -145,4 +146,17 @@ func (g *Game) computerWins() {
 func (g *Game) playerWins() {
 	g.Round.PlayerScore++
 	g.DisplayChan <- "Player wins!"
+}
+
+func (g *Game) PrintSummary() {
+	fmt.Println()
+	fmt.Println("Computer Score:", g.Round.ComputerScore)
+	fmt.Println("Player Score:", g.Round.PlayerScore)
+	if g.Round.ComputerScore == g.Round.PlayerScore {
+		fmt.Println("It's a draw!")
+	} else if g.Round.ComputerScore > g.Round.PlayerScore {
+		fmt.Println("Computer wins!")
+	} else {
+		fmt.Println("Player wins!")
+	}
 }
