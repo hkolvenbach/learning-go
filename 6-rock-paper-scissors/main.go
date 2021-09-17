@@ -28,8 +28,8 @@ func main() {
 
 	clearScreen()
 
-	for i := 0; i <= 2; i++ {
-
+	for i := 1; i <= 3; i++ {
+		fmt.Printf("Round %d:\n", i)
 		fmt.Print("Please enter rock, paper, or scissors ->")
 		playerChoice, _ = reader.ReadString('\n')
 		playerChoice = strings.Replace(playerChoice, "\r\n", "", -1)
@@ -41,6 +41,9 @@ func main() {
 			playerValue = PAPER
 		} else if playerChoice == "scissors" {
 			playerValue = SCISSORS
+		} else {
+			// reset if invalid data is entered
+			playerValue = -1
 		}
 
 		switch computerValue {
@@ -84,6 +87,8 @@ func main() {
 				break
 			default:
 				fmt.Println("Invalid choice")
+				// reset round counter by one
+				i--
 			}
 		}
 	}
