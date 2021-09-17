@@ -28,60 +28,63 @@ func main() {
 
 	clearScreen()
 
-	fmt.Print("Please enter rock, paper, or scissors ->")
-	playerChoice, _ = reader.ReadString('\n')
-	playerChoice = strings.Replace(playerChoice, "\r\n", "", -1)
-	playerChoice = strings.Replace(playerChoice, "\n", "", -1)
+	for i := 0; i <= 2; i++ {
 
-	if playerChoice == "rock" {
-		playerValue = ROCK
-	} else if playerChoice == "paper" {
-		playerValue = PAPER
-	} else if playerChoice == "scissors" {
-		playerValue = SCISSORS
-	}
+		fmt.Print("Please enter rock, paper, or scissors ->")
+		playerChoice, _ = reader.ReadString('\n')
+		playerChoice = strings.Replace(playerChoice, "\r\n", "", -1)
+		playerChoice = strings.Replace(playerChoice, "\n", "", -1)
 
-	switch computerValue {
-	case ROCK:
-		fmt.Println("Computer chose ROCK")
-		break
-	case PAPER:
-		fmt.Println("Computer chose PAPER")
-		break
-	case SCISSORS:
-		fmt.Println("Computer chose SCISSORS")
-		break
-	default:
-	}
-	fmt.Println("Player value is", playerValue)
+		if playerChoice == "rock" {
+			playerValue = ROCK
+		} else if playerChoice == "paper" {
+			playerValue = PAPER
+		} else if playerChoice == "scissors" {
+			playerValue = SCISSORS
+		}
 
-	if playerValue == computerValue {
-		fmt.Println("Its a draw.")
-	} else {
-		switch playerValue {
+		switch computerValue {
 		case ROCK:
-			if computerValue == PAPER {
-				fmt.Println("Computer wins")
-			} else {
-				fmt.Println("Player wins")
-			}
+			fmt.Println("Computer chose ROCK")
 			break
 		case PAPER:
-			if computerValue == SCISSORS {
-				fmt.Println("Computer wins")
-			} else {
-				fmt.Println("Player wins")
-			}
+			fmt.Println("Computer chose PAPER")
 			break
 		case SCISSORS:
-			if computerValue == ROCK {
-				fmt.Println("Computer wins")
-			} else {
-				fmt.Println("Player wins")
-			}
+			fmt.Println("Computer chose SCISSORS")
 			break
 		default:
-			fmt.Println("Invalid choice")
+		}
+		fmt.Println("Player value is", playerValue)
+
+		if playerValue == computerValue {
+			fmt.Println("Its a draw.")
+		} else {
+			switch playerValue {
+			case ROCK:
+				if computerValue == PAPER {
+					fmt.Println("Computer wins")
+				} else {
+					fmt.Println("Player wins")
+				}
+				break
+			case PAPER:
+				if computerValue == SCISSORS {
+					fmt.Println("Computer wins")
+				} else {
+					fmt.Println("Player wins")
+				}
+				break
+			case SCISSORS:
+				if computerValue == ROCK {
+					fmt.Println("Computer wins")
+				} else {
+					fmt.Println("Player wins")
+				}
+				break
+			default:
+				fmt.Println("Invalid choice")
+			}
 		}
 	}
 
