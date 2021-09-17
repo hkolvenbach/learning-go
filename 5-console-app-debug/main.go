@@ -36,6 +36,9 @@ func main() {
 
 	for char != 'q' {
 		char, _, err = keyboard.GetSingleKey()
+		if char == 'Q' {
+			char = 'q'
+		}
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -44,10 +47,14 @@ func main() {
 		// 	break
 		// }
 
-		i, _ := strconv.Atoi(string(char))
+		if char != 'q' {
+			i, _ := strconv.Atoi(string(char))
 
-		fmt.Printf("You chose %s\n", coffees[i])
+			fmt.Printf("You chose %s\n", coffees[i])
+		}
+
 	}
 
+	fmt.Println("Thanks for visiting us. Have a great day.")
 	fmt.Println("Program exiting.")
 }
