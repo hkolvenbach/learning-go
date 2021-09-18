@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"myapp/rps"
 	"net/http"
 	"text/template"
 )
@@ -11,7 +12,8 @@ func homepage(w http.ResponseWriter, r *http.Request) {
 }
 
 func playRound(w http.ResponseWriter, r *http.Request) {
-
+	winner, computerChoice, roundResult := rps.PlayRound(1)
+	log.Println(winner, computerChoice, roundResult)
 }
 
 func main() {
