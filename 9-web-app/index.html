@@ -22,9 +22,21 @@
         <p>Choose Rock, Paper, Scissor</p>
 
     
-        <button class="btn btn-outline-secondary">Rock</button>
-        <button class="btn btn-outline-danger">Paper</button>
-        <button class="btn btn-outline-success">Scissor</button>
+        <button class="btn btn-outline-secondary" onClick="choose(0)">Rock</button>
+        <button class="btn btn-outline-danger" onClick="choose(1)">Paper</button>
+        <button class="btn btn-outline-success" onClick="choose(2)">Scissor</button>
     </div>
 </body>
+<script>
+    function choose(x) {
+        if (x == 0) {
+            document.getElementById("player_choice").innerHTML = "You clicked ROCK";
+        } else if ( x== 1) {
+            document.getElementById("player_choice").innerHTML = "You clicked PAPER";
+        } else {
+            document.getElementById("player_choice").innerHTML = "You clicked SCISSORS";
+        }
+        
+    }
+</script>
 </html>
