@@ -7,7 +7,20 @@ import (
 )
 
 func homepage(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("index.html")
+	renderTemplate(w, "index.html")
+}
+
+func main() {
+	http.HandleFunc("/", homepage)
+
+	log.Println("Starting web server on port 8080")
+
+	// Reachable via http://127.0.0.1:8080/
+	http.ListenAndServe(":8080", nil)
+}
+
+func renderTemplate(w http.ResponseWriter, page string) {
+	t, err := template.ParseFiles(page)
 	if err != nil {
 		log.Println(err)
 		return
@@ -19,13 +32,4 @@ func homepage(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		return
 	}
-}
-
-func main() {
-	http.HandleFunc("/", homepage)
-
-	log.Println("Starting web server on port 8080")
-
-	// Reachable via http://127.0.0.1:8080/
-	http.ListenAndServe(":8080", nil)
 }
