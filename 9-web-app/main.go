@@ -10,8 +10,13 @@ func homepage(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "index.html")
 }
 
+func playRound(w http.ResponseWriter, r *http.Request) {
+
+}
+
 func main() {
 	http.HandleFunc("/", homepage)
+	http.HandleFunc("/play", playRound)
 
 	log.Println("Starting web server on port 8080")
 
